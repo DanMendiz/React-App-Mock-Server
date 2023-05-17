@@ -1,24 +1,24 @@
-import React, { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
-import TempHeader from './TempHeader';
-import Container from '@mui/material/Container';
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-import { UIContext } from './contexts/UI.context';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useContext } from "react";
+import { Outlet } from "react-router-dom";
+import TempHeader from "./TempHeader";
+import Container from "@mui/material/Container";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import { UIContext } from "./contexts/UI.context";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Layout() {
   const {
     isOpen: open,
-    severity,
+    severity = "info",
     onClose: handleClose,
     message,
   } = useContext(UIContext);
-  console.log(handleClose);
+  // console.log(handleClose);
 
   const action = (props) => {
-    console.log(props);
+    // console.log(props);
     return (
       <React.Fragment>
         <IconButton
@@ -52,9 +52,11 @@ function Layout() {
         // message={message}
         // action={action}
       >
-        <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-          {message}
-          {action}
+        <Alert onClose={handleClose} severity={severity} sx={{ width: "100%" }}>
+          <>
+            <p>{message}</p>
+            {action}
+          </>
         </Alert>
       </Snackbar>
     </>

@@ -1,13 +1,12 @@
 import React, { createContext, useState, useCallback } from 'react';
-import { TodosContext } from './todo.context';
+// import { TodosContext } from './todo.context';
 
 export const UIContext = createContext({
   snackbar: {
     isOpen: false,
-    message: '',
     hideDuration: 6000,
     onClose: () => {},
-    message: 'success',
+    message: 'info',
     showMessage: () => {},
   },
 });
@@ -15,12 +14,12 @@ export const UIContext = createContext({
 export const UIProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [severity, setSeverity] = useState('');
+  const [severity, setSeverity] = useState('info');
 
   const onClose = () => {
     setOpen(false);
     setMessage('');
-    setSeverity('');
+    // setSeverity('');
   };
 
   const showMessage = ({ type, string }) => {

@@ -147,7 +147,10 @@ export const TodosProvider = ({ children }) => {
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-        if (response.status !== 204) {
+        // if (response.status !== 204) {
+        //   throw response;
+        // }
+        if (!response.ok) {
           throw response;
         }
         // Get index

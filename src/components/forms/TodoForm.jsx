@@ -20,8 +20,8 @@ const defaults = {
   avatar_url: '',
 };
 
-export default function TodoForm({ todos, submitHandler }) {
-  console.log(todos);
+export default function TodoForm({ todo, submitHandler }) {
+  console.log(todo);
 
   const {
     handleSubmit,
@@ -32,27 +32,27 @@ export default function TodoForm({ todos, submitHandler }) {
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
-    defaultValues: todos || defaults,
+    defaultValues: todo || defaults,
   });
 
   useEffect(() => {
     console.log(formState);
   });
 
-  useEffect(() => {
-    // console.log('useeffect', car);
-    if (todos) {
-      reset(todos);
-    }
-  }, [todos, reset]);
+  // useEffect(() => {
+  //   // console.log('useeffect', car);
+  //   if (todos) {
+  //     reset(todos);
+  //   }
+  // }, [todos, reset]);
 
   const formRowStyle = {
     marginBlockEnd: '1em',
   };
 
   let submitFn = (vals) => {
+    submitHandler(vals);
     reset();
-    todos ? submitHandler(todos._id, vals) : submitHandler(vals);
   };
 
   return (
